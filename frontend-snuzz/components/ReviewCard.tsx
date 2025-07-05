@@ -31,27 +31,27 @@ const defaultTestimonials: Testimonial[] = [
 
 export default function ReviewCard({ testimonials = defaultTestimonials }: ReviewCardProps) {
   return (
-    <section className="px-4 py-6 bg-white">
-      <div className="max-w-[1440px] mx-auto">
+    <section className="px-5 bg-white">
+      <div className="max-w-[1400px] mx-auto">
         <h2 className="text-5xl font-bold text-gray-900 text-center mb-20">Reviews</h2>
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-6 justify-items-center">
           {testimonials.map((testimonial, i) => (
             <Card
               key={i}
-              className="p-4 border-0 shadow-xl hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-gray-100 to-[#F0F1F1] rounded-3xl hover:-translate-y-2"
+              className="p-4 border-0 transition-all duration-300 bg-gradient-to-br from-gray-100 to-[#F0F1F1] hover:-translate-y-2 w-full max-w-[350px]"
             >
               <CardContent className="p-0">
-                <div className="flex items-center space-x-1 mb-6">
+                <div className="flex items-center space-x-1 mb-1">
                   {[...Array(5)].map((_, j) => (
                     <Star
                       key={j}
-                      className={`w-5 h-5 ${
+                      className={`size-4 ${
                         j < 4 ? "fill-black text-black" : "fill-none text-black"
                       }`}
                     />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-6 text-lg leading-relaxed">{testimonial.review}</p>
+                <p className="text-gray-700 mb-1 text-sm leading-relaxed">{testimonial.review}</p>
                 <div className="flex items-center">
                   <div className="flex items-center space-x-2">
                     <CircleUserRound />

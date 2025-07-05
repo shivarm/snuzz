@@ -1,20 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Header from "@/components/Header";
+import FeatureCard from "@/components/FeatureCard";
 import ReviewCard from "@/components/ReviewCard";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import {
   ShoppingBag,
   Star,
-  Instagram,
-  Facebook,
-  Youtube,
-  Twitter,
   ArrowRight,
   X,
   Plus,
@@ -38,515 +36,148 @@ const allProducts = [
     brand: "Klint",
     image: "KLINT",
   },
+
   {
     id: 2,
-    name: "Velo Ice Cool",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.49,
-    salePrice: 4.2,
-    rating: 4.7,
-    brand: "Velo",
-    image: "VELO",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 3,
-    name: "ZYN Citrus",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 4.79,
-    salePrice: 3.99,
-    rating: 4.9,
-    brand: "ZYN",
-    image: "ZYN",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 4,
-    name: "Nordic Spirit Berry",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.29,
-    salePrice: 4.1,
-    rating: 4.6,
-    brand: "Nordic",
-    image: "NORDIC",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 5,
-    name: "Klint Breeze",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
     price: 4.99,
-    salePrice: 3.75,
+    salePrice: 3.6,
     rating: 4.8,
     brand: "Klint",
     image: "KLINT",
   },
   {
     id: 6,
-    name: "Velo Freeze",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.49,
-    salePrice: 4.3,
-    rating: 4.7,
-    brand: "Velo",
-    image: "VELO",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 7,
-    name: "ZYN Spearmint",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 4.79,
-    salePrice: 3.85,
-    rating: 4.9,
-    brand: "ZYN",
-    image: "ZYN",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 8,
-    name: "Nordic Spirit Mint",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.29,
-    salePrice: 4.15,
-    rating: 4.6,
-    brand: "Nordic",
-    image: "NORDIC",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
     id: 9,
-    name: "Klint Passion Fruit",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
     price: 4.99,
-    salePrice: 3.7,
+    salePrice: 3.6,
     rating: 4.8,
     brand: "Klint",
     image: "KLINT",
   },
   {
     id: 10,
-    name: "Velo Tropical",
-    category: "NICOTINE POUCHES",
-    price: 5.49,
-    salePrice: 4.25,
-    rating: 4.7,
-    brand: "Velo",
-    image: "VELO",
-  },
-  {
-    id: 11,
-    name: "ZYN Coffee",
-    category: "NICOTINE POUCHES",
-    price: 4.79,
-    salePrice: 3.95,
-    rating: 4.9,
-    brand: "ZYN",
-    image: "ZYN",
-  },
-  {
-    id: 12,
-    name: "Nordic Spirit Elderflower",
-    category: "NICOTINE POUCHES",
-    price: 5.29,
-    salePrice: 4.05,
-    rating: 4.6,
-    brand: "Nordic",
-    image: "NORDIC",
-  },
-
-  // Vapes
-  {
-    id: 13,
-    name: "JUUL Classic Tobacco",
-    category: "Vapes",
-    price: 29.99,
-    salePrice: 24.99,
-    rating: 4.5,
-    brand: "JUUL",
-    image: "JUUL",
-  },
-  {
-    id: 14,
-    name: "Vuse Alto Menthol",
-    category: "Vapes",
-    price: 19.99,
-    salePrice: 16.99,
-    rating: 4.4,
-    brand: "Vuse",
-    image: "VUSE",
-  },
-  {
-    id: 15,
-    name: "SMOK Nord 4",
-    category: "Vapes",
-    price: 34.99,
-    salePrice: 28.99,
-    rating: 4.7,
-    brand: "SMOK",
-    image: "SMOK",
-  },
-  {
-    id: 16,
-    name: "GeekVape Aegis",
-    category: "Vapes",
-    price: 45.99,
-    salePrice: 39.99,
-    rating: 4.8,
-    brand: "GeekVape",
-    image: "GEEK",
-  },
-  {
-    id: 17,
-    name: "Voopoo Drag X",
-    category: "Vapes",
-    price: 39.99,
-    salePrice: 32.99,
-    rating: 4.6,
-    brand: "Voopoo",
-    image: "VOOP",
-  },
-  {
-    id: 18,
-    name: "Lost Vape Orion",
-    category: "Vapes",
-    price: 49.99,
-    salePrice: 42.99,
-    rating: 4.9,
-    brand: "Lost Vape",
-    image: "LOST",
-  },
-  {
-    id: 19,
-    name: "Uwell Caliburn",
-    category: "Vapes",
-    price: 24.99,
-    salePrice: 19.99,
-    rating: 4.7,
-    brand: "Uwell",
-    image: "UWELL",
-  },
-  {
-    id: 20,
-    name: "Innokin Zlide",
-    category: "Vapes",
-    price: 27.99,
-    salePrice: 22.99,
-    rating: 4.5,
-    brand: "Innokin",
-    image: "INNO",
-  },
-
-  // Snuff
-  {
-    id: 21,
-    name: "Copenhagen Original",
-    category: "Snuff",
-    price: 6.99,
-    salePrice: 5.99,
-    rating: 4.3,
-    brand: "Copenhagen",
-    image: "COPE",
-  },
-  {
-    id: 22,
-    name: "Skoal Mint",
-    category: "Snuff",
-    price: 6.49,
-    salePrice: 5.49,
-    rating: 4.2,
-    brand: "Skoal",
-    image: "SKOAL",
-  },
-  {
-    id: 23,
-    name: "Grizzly Wintergreen",
-    category: "Snuff",
-    price: 5.99,
-    salePrice: 4.99,
-    rating: 4.4,
-    brand: "Grizzly",
-    image: "GRIZZ",
-  },
-  {
-    id: 24,
-    name: "Kodiak Ice",
-    category: "Snuff",
-    price: 7.49,
-    salePrice: 6.49,
-    rating: 4.5,
-    brand: "Kodiak",
-    image: "KODIAK",
-  },
-  {
-    id: 25,
-    name: "Red Seal Natural",
-    category: "Snuff",
-    price: 5.49,
-    salePrice: 4.79,
-    rating: 4.1,
-    brand: "Red Seal",
-    image: "RED",
-  },
-  {
-    id: 26,
-    name: "Timber Wolf Peach",
-    category: "Snuff",
-    price: 4.99,
-    salePrice: 4.29,
-    rating: 4.0,
-    brand: "Timber Wolf",
-    image: "TIMBER",
-  },
-
-  // Energy
-  {
-    id: 27,
-    name: "Monster Energy Original",
-    category: "Energy",
-    price: 2.99,
-    salePrice: 2.49,
-    rating: 4.6,
-    brand: "Monster",
-    image: "MONSTER",
-  },
-  {
-    id: 28,
-    name: "Red Bull Classic",
-    category: "Energy",
-    price: 3.49,
-    salePrice: 2.99,
-    rating: 4.7,
-    brand: "Red Bull",
-    image: "REDBULL",
-  },
-  {
-    id: 29,
-    name: "Bang Rainbow Unicorn",
-    category: "Energy",
-    price: 2.79,
-    salePrice: 2.29,
-    rating: 4.5,
-    brand: "Bang",
-    image: "BANG",
-  },
-  {
-    id: 30,
-    name: "Reign Orange Dreamsicle",
-    category: "Energy",
-    price: 2.89,
-    salePrice: 2.39,
-    rating: 4.4,
-    brand: "Reign",
-    image: "REIGN",
-  },
-  {
-    id: 31,
-    name: "C4 Icy Blue Razz",
-    category: "Energy",
-    price: 2.99,
-    salePrice: 2.59,
-    rating: 4.3,
-    brand: "C4",
-    image: "C4",
-  },
-  {
-    id: 32,
-    name: "Ghost Swedish Fish",
-    category: "Energy",
-    price: 3.29,
-    salePrice: 2.79,
-    rating: 4.8,
-    brand: "Ghost",
-    image: "GHOST",
-  },
-
-  // Chewing Tobacco
-  {
-    id: 33,
-    name: "Red Man Golden Blend",
-    category: "Chewing Tobacco",
-    price: 8.99,
-    salePrice: 7.49,
-    rating: 4.2,
-    brand: "Red Man",
-    image: "REDMAN",
-  },
-  {
-    id: 34,
-    name: "Levi Garrett",
-    category: "Chewing Tobacco",
-    price: 9.49,
-    salePrice: 7.99,
-    rating: 4.3,
-    brand: "Levi Garrett",
-    image: "LEVI",
-  },
-  {
-    id: 35,
-    name: "Mail Pouch",
-    category: "Chewing Tobacco",
-    price: 7.99,
-    salePrice: 6.79,
-    rating: 4.1,
-    brand: "Mail Pouch",
-    image: "MAIL",
-  },
-  {
-    id: 36,
-    name: "Beech Nut",
-    category: "Chewing Tobacco",
-    price: 8.49,
-    salePrice: 7.19,
-    rating: 4.0,
-    brand: "Beech Nut",
-    image: "BEECH",
-  },
-
-  // More Nicotine Pouches
-  {
-    id: 37,
-    name: "Klint Honey Lemon",
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
     price: 4.99,
-    salePrice: 3.65,
+    salePrice: 3.6,
     rating: 4.8,
     brand: "Klint",
     image: "KLINT",
   },
   {
-    id: 38,
-    name: "Velo Ruby Berry",
+    id: 11,
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.49,
-    salePrice: 4.35,
-    rating: 4.7,
-    brand: "Velo",
-    image: "VELO",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
-    id: 39,
-    name: "ZYN Smooth",
+    id: 12,
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 4.79,
-    salePrice: 3.89,
-    rating: 4.9,
-    brand: "ZYN",
-    image: "ZYN",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
-    id: 40,
-    name: "Nordic Spirit Storm",
+    id: 13,
+    name: "Klint Arctic Mint",
     category: "NICOTINE POUCHES",
-    price: 5.29,
-    salePrice: 4.2,
-    rating: 4.6,
-    brand: "Nordic",
-    image: "NORDIC",
-  },
-
-  // More Vapes
-  {
-    id: 41,
-    name: "Puff Bar Plus",
-    category: "Vapes",
-    price: 12.99,
-    salePrice: 9.99,
-    rating: 4.3,
-    brand: "Puff Bar",
-    image: "PUFF",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
-    id: 42,
-    name: "Hyde Edge",
-    category: "Vapes",
-    price: 15.99,
-    salePrice: 12.99,
-    rating: 4.4,
-    brand: "Hyde",
-    image: "HYDE",
+    id: 14,
+    name: "Klint Arctic Mint",
+    category: "NICOTINE POUCHES",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
   {
-    id: 43,
-    name: "Elf Bar BC5000",
-    category: "Vapes",
-    price: 18.99,
-    salePrice: 15.99,
-    rating: 4.6,
-    brand: "Elf Bar",
-    image: "ELF",
-  },
-  {
-    id: 44,
-    name: "Breeze Pro",
-    category: "Vapes",
-    price: 16.99,
-    salePrice: 13.99,
-    rating: 4.5,
-    brand: "Breeze",
-    image: "BREEZE",
-  },
-
-  // More Energy
-  {
-    id: 45,
-    name: "Rockstar Punched",
-    category: "Energy",
-    price: 2.89,
-    salePrice: 2.49,
-    rating: 4.2,
-    brand: "Rockstar",
-    image: "ROCK",
-  },
-  {
-    id: 46,
-    name: "NOS High Performance",
-    category: "Energy",
-    price: 2.99,
-    salePrice: 2.59,
-    rating: 4.3,
-    brand: "NOS",
-    image: "NOS",
-  },
-  {
-    id: 47,
-    name: "Full Throttle",
-    category: "Energy",
-    price: 2.79,
-    salePrice: 2.39,
-    rating: 4.1,
-    brand: "Full Throttle",
-    image: "FULL",
-  },
-
-  // More Snuff
-  {
-    id: 48,
-    name: "Longhorn Mint",
-    category: "Snuff",
-    price: 4.49,
-    salePrice: 3.99,
-    rating: 3.9,
-    brand: "Longhorn",
-    image: "LONG",
-  },
-  {
-    id: 49,
-    name: "Stoker's Straight",
-    category: "Snuff",
-    price: 5.29,
-    salePrice: 4.59,
-    rating: 4.2,
-    brand: "Stoker's",
-    image: "STOKER",
-  },
-  {
-    id: 50,
-    name: "Hawken Wintergreen",
-    category: "Snuff",
-    price: 4.79,
-    salePrice: 4.19,
-    rating: 4.0,
-    brand: "Hawken",
-    image: "HAWKEN",
+    id: 15,
+    name: "Klint Arctic Mint",
+    category: "NICOTINE POUCHES",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
   },
 ];
-
-const categories = ["ALL", "NICOTINE POUCHES", "Vapes", "Snuff", "Energy", "Chewing Tobacco"];
 
 interface CartItem {
   id: number;
@@ -558,24 +189,9 @@ interface CartItem {
 }
 
 export default function Component() {
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
-  const [filteredProducts, setFilteredProducts] = useState(allProducts);
-  const [visibleProducts, setVisibleProducts] = useState(12);
+  const [visibleProducts, setVisibleProducts] = useState(15);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
-  useEffect(() => {
-    if (selectedCategory === "ALL") {
-      setFilteredProducts(allProducts);
-    } else {
-      setFilteredProducts(allProducts.filter((product) => product.category === selectedCategory));
-    }
-    setVisibleProducts(12);
-  }, [selectedCategory]);
-
-  const loadMoreProducts = () => {
-    setVisibleProducts((prev) => Math.min(prev + 12, filteredProducts.length));
-  };
 
   const getDiscountPercentage = (price: number, salePrice: number) => {
     return Math.round(((price - salePrice) / price) * 100);
@@ -812,267 +428,107 @@ export default function Component() {
             </div>
             {/* Right Hero SVG Image - much larger, fills hero section */}
             <div className="flex items-center justify-end w-full h-full min-h-[600px] lg:min-h-[900px]">
-              <img
+              <Image
                 src="/group-32.svg"
                 alt="Hero visual"
                 className="object-contain drop-shadow-xl pointer-events-none relative top-[108px] left-0"
-                style={{
-                  filter: "drop-shadow(0 8px 32px rgba(58,240,247,0.25))",
-                  width: "676.39px",
-                  height: "676.39px",
-                  borderRadius: "692.17px",
-                }}
+                width={676.39}
+                height={676.39}
+                style={{ borderRadius: "692.17px" }}
               />
             </div>
           </div>
         </div>
       </section>
+      <FeatureCard />
+      
+{/* TODO: Product Card */}
+{/*
+<section id="products-section" className="px-4 py-20 bg-gradient-to-br from-gray-50 to-white">
+  <div className="max-w-[1440px] mx-auto">
+    <div className="text-center mb-20">
+      <h2 className="text-4xl font-bold text-gray-900 ">Best selling</h2>
+    </div>
 
-      {/* Enhanced Features Section */}
-      <section className="px-4 py-20 bg-white">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-extrabold text-gray-900 mb-8 tracking-tight">
-              Why Choose SNUZZ?
-            </h2>
-            <p className="text-gray-600 text-2xl font-medium">
-              Experience the best in quality, service, and satisfaction
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-16">
-            {[
-              {
-                icon: "/dollor.png",
-                title: "Best Prices Guaranteed",
-                description:
-                  "Unbeatable prices on all your favorite nicotine products with price match guarantee.",
-              },
-              {
-                icon: "/icon2.svg",
-                title: "Premium Quality",
-                description:
-                  "Only the finest products from trusted brands, ensuring quality and satisfaction every time.",
-              },
-              {
-                icon: "/icon3.svg",
-                title: "Fast & Discreet Delivery",
-                description:
-                  "Get your products delivered quickly and discreetly with our express shipping options.",
-              },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="group text-center p-10 rounded-3xl bg-gradient-to-br from-white to-gray-50 border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
-              >
-                <div className="w-28 h-28 mx-auto mb-8 relative flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#3AF0F7]/30 to-[#8ef7fb]/10 blur-lg opacity-70 group-hover:scale-110 transition-transform duration-500"></div>
-                  <img
-                    src={feature.icon || "/placeholder.svg"}
-                    alt={feature.title}
-                    className="w-20 h-20 z-10 relative drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <h3 className="font-extrabold text-2xl text-gray-900 mb-4 tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-700 text-lg font-medium leading-relaxed">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Enhanced Shop Bestsellers */}
-      <section id="products-section" className="px-4 py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">Shop Bestsellers</h2>
-            <p className="text-gray-600 text-2xl">
-              Discover our most popular products across all categories
-            </p>
-          </div>
-
-          {/* Enhanced Category Selector */}
-          <div className="flex justify-center mb-16">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-5 flex flex-wrap gap-4 shadow-xl border border-gray-200">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`${
-                    selectedCategory === category
-                      ? "bg-gradient-to-r from-[#3AF0F7] to-[#8ef7fb] text-black shadow-lg scale-105"
-                      : "bg-transparent text-gray-600 hover:text-[#3AF0F7] hover:bg-gray-100"
-                  } rounded-2xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105`}
-                >
-                  {category === "ALL" ? "All Products" : category}
-                </Button>
-              ))}
+   
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols- 2xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-12 md:mb-16 justify-items-center">
+      {allProducts.slice(0, visibleProducts).map((product) => (
+        <div
+          key={product.id}
+          className="relative bg-gradient-to-b from-[#e0f7fa] to-[#f8fdff] rounded-sm shadow-lg p-4 sm:p-6 flex flex-col justify-between group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-dotted  w-full max-w-[248px] h-[329px] min-h-[329px]"
+        >
+           
+          <div className="flex flex-col items-center w-full flex-1">
+            <div className="flex flex-row gap-1 sm:gap-2 justify-center w-full z-10 flex-wrap">
+              {product.salePrice < product.price && (
+                <span className="bg-white text-[11px] sm:text-[13px] font-bold text-red-500 px-2 sm:px-2.5 py-1 rounded-sm shadow border border-red-100 whitespace-nowrap not-italic">
+                  Sale {getDiscountPercentage(product.price, product.salePrice)}%
+                </span>
+              )}
+              <span className="bg-white text-[11px] sm:text-[13px] font-bold italic text-black px-2 sm:px-3 py-1 rounded-sm shadow border border-gray-200 whitespace-nowrap">
+                Free shipping
+              </span>
+            </div>
+            <div className="flex items-center justify-center w-full flex-1 min-h-0">
+              <Image
+                src="/mint.jpg"
+                alt={product.name}
+                className="object-cover drop-shadow-xl [filter:drop-shadow(0_8px_16px_rgba(0,0,0,0.10))]"
+                width={150}
+                height={150}
+              />
             </div>
           </div>
 
-          {/* Improved the product grid responsiveness: */}
-          {/* Enhanced Product Grid - Better Mobile Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-10 mb-12 md:mb-16">
-            {filteredProducts.slice(0, visibleProducts).map((product) => (
-              <div
-                key={product.id}
-                className="relative aspect-[2/3] bg-gradient-to-br from-[#e0f7fa] to-[#f8fdff] rounded-3xl shadow-lg p-6 flex flex-col justify-between group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border border-dotted border-[#3AF0F7]"
-                style={{ minWidth: "0", width: "100%" }}
-              >
-                {/* Top: Badges and Image */}
-                <div className="flex flex-col items-center w-full">
-                  <div className="flex flex-row gap-2 justify-center w-full mb-2 mt-1 z-10">
-                    {product.salePrice < product.price && (
-                      <span
-                        className="bg-white text-[13px] font-bold text-red-500 px-2.5 py-1 rounded-full shadow border border-red-100"
-                        style={{ fontStyle: "normal" }}
-                      >
-                        Sale {getDiscountPercentage(product.price, product.salePrice)}%
-                      </span>
-                    )}
-                    <span
-                      className="bg-white text-[13px] font-bold italic text-black px-3 py-1 rounded-full shadow border border-gray-200"
-                      style={{ fontStyle: "italic" }}
-                    >
-                      Free shipping
-                    </span>
-                  </div>
-                  <div
-                    className="flex items-center justify-center w-full"
-                    style={{ minHeight: "8rem" }}
-                  >
-                    <img
-                      src={
-                        product.image === "KLINT"
-                          ? "/klint-product.png"
-                          : product.image === "VELO"
-                          ? "/velo.png"
-                          : product.image === "ZYN"
-                          ? "/zyn.png"
-                          : product.image === "NORDIC"
-                          ? "/nordic.png"
-                          : product.image === "JUUL"
-                          ? "/juul.png"
-                          : product.image === "VUSE"
-                          ? "/vuse.png"
-                          : product.image === "SMOK"
-                          ? "/smok.png"
-                          : product.image === "GEEK"
-                          ? "/geek.png"
-                          : product.image === "VOOP"
-                          ? "/voop.png"
-                          : product.image === "LOST"
-                          ? "/lost.png"
-                          : product.image === "UWELL"
-                          ? "/uwell.png"
-                          : product.image === "INNO"
-                          ? "/inno.png"
-                          : product.image === "COPE"
-                          ? "/cope.png"
-                          : product.image === "SKOAL"
-                          ? "/skoal.png"
-                          : product.image === "GRIZZ"
-                          ? "/grizz.png"
-                          : product.image === "KODIAK"
-                          ? "/kodiak.png"
-                          : product.image === "RED"
-                          ? "/red.png"
-                          : product.image === "TIMBER"
-                          ? "/timber.png"
-                          : product.image === "MONSTER"
-                          ? "/monster.png"
-                          : product.image === "REDBULL"
-                          ? "/redbull.png"
-                          : product.image === "BANG"
-                          ? "/bang.png"
-                          : product.image === "REIGN"
-                          ? "/reign.png"
-                          : product.image === "C4"
-                          ? "/c4.png"
-                          : product.image === "GHOST"
-                          ? "/ghost.png"
-                          : product.image === "REDMAN"
-                          ? "/redman.png"
-                          : product.image === "LEVI"
-                          ? "/levi.png"
-                          : product.image === "MAIL"
-                          ? "/mail.png"
-                          : product.image === "BEECH"
-                          ? "/beech.png"
-                          : product.image === "PUFF"
-                          ? "/puff.png"
-                          : product.image === "HYDE"
-                          ? "/hyde.png"
-                          : product.image === "ELF"
-                          ? "/elf.png"
-                          : product.image === "BREEZE"
-                          ? "/breeze.png"
-                          : product.image === "ROCK"
-                          ? "/rock.png"
-                          : product.image === "NOS"
-                          ? "/nos.png"
-                          : product.image === "FULL"
-                          ? "/full.png"
-                          : product.image === "LONG"
-                          ? "/long.png"
-                          : product.image === "STOKER"
-                          ? "/stoker.png"
-                          : product.image === "HAWKEN"
-                          ? "/hawken.png"
-                          : "/placeholder-logo.svg"
-                      }
-                      alt={product.name}
-                      className="w-28 h-28 object-contain drop-shadow-xl"
-                      style={{ filter: "drop-shadow(0 8px 16px rgba(0,0,0,0.10))" }}
-                    />
-                  </div>
-                </div>
-                {/* Bottom: Product Info and Cart Button */}
-                <div className="flex w-full items-end justify-between mt-auto pt-2">
-                  <div className="text-left">
-                    <h3 className="font-normal text-[16px] text-black mb-1 leading-tight">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-[#e74c3c] font-bold text-[17px]">
-                        € {product.salePrice.toFixed(2)}
-                      </span>
-                      {product.salePrice < product.price && (
-                        <span className="text-gray-500 line-through text-[15px]">
-                          € {product.price.toFixed(2)}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="w-11 h-11 rounded-full flex items-center justify-center bg-[#e0f7fa]/80 hover:bg-[#3AF0F7]/30 transition shadow mb-1"
-                    style={{ boxShadow: "0 2px 8px 0 rgba(58,240,247,0.10)" }}
-                  >
-                    <img src="/basket.png" alt="Add to cart" className="w-6 h-6" />
-                  </button>
-                </div>
+          
+          <div className="flex w-full items-end justify-between mt-auto pt-2 min-h-0">
+            <div className="text-left flex-1 min-w-0">
+              <h3 className="font-normal text-[14px] sm:text-[15px] md:text-[16px] text-black mb-1 leading-tight truncate">
+                {product.name}
+              </h3>
+              <div className="flex items-center gap-1 sm:gap-2 mb-2 flex-wrap">
+                <span className="text-[#e74c3c] font-bold text-[15px] sm:text-[16px] md:text-[17px] whitespace-nowrap">
+                  € {product.salePrice.toFixed(2)}
+                </span>
+                {product.salePrice < product.price && (
+                  <span className="text-gray-500 line-through text-[13px] sm:text-[14px] md:text-[15px] whitespace-nowrap">
+                    € {product.price.toFixed(2)}
+                  </span>
+                )}
               </div>
-            ))}
-          </div>
-
-          {/* Enhanced Load More Button */}
-          {visibleProducts < filteredProducts.length && (
-            <div className="text-center">
-              <Button
-                onClick={() => (window.location.href = "/categories")}
-                className="px-6 py-2 border border-teal-400 rounded-md text-black font-bold bg-transparent text-lg "
-              >
-                Show all
-              </Button>
             </div>
-          )}
+            <button
+              onClick={() => addToCart(product)}
+              className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center bg-[#e0f7fa]/80 hover:bg-[#3AF0F7]/30 transition shadow mb-1 flex-shrink-0 [box-shadow:0_2px_8px_0_rgba(58,240,247,0.10)]"
+            >
+              <Image
+                src="/cart.png"
+                alt="Add to cart"
+                className="sm:w-6 sm:h-6"
+                width={5}
+                height={5}
+              />
+            </button>
+          </div>
         </div>
-      </section>
+      ))}
+    </div>
+
+   
+    {visibleProducts <= allProducts.length && (
+      <div className="text-center">
+        <Button
+          onClick={() => (window.location.href = "/categories")}
+          className="px-6 py-5 border border-teal-400 rounded-md text-black font-bold bg-transparent text-lg "
+        >
+          Show all
+          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Button>
+      </div>
+    )}
+  </div>
+</section>
+*/}
       <ReviewCard />
       <Footer />
 
@@ -1318,4 +774,11 @@ export default function Component() {
       `}</style>
     </div>
   );
+}
+function shadow(arg0: number, arg1: number, px: any, arg3: number, px1: any, arg5: any) {
+  throw new Error("Function not implemented.");
+}
+
+function rgba(arg0: number, arg1: number, arg2: number, arg3: number): any {
+  throw new Error("Function not implemented.");
 }

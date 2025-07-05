@@ -1,3 +1,5 @@
+"use client";
+
 import { Star, CircleUserRound } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -31,7 +33,7 @@ const defaultTestimonials: Testimonial[] = [
 
 export default function ReviewCard({ testimonials = defaultTestimonials }: ReviewCardProps) {
   return (
-    <section className="px-5 bg-white">
+    <section className="px-5 py-20 bg-white">
       <div className="max-w-[1400px] mx-auto">
         <h2 className="text-5xl font-bold text-gray-900 text-center mb-20">Reviews</h2>
         <div className="grid md:grid-cols-3 gap-6 justify-items-center">

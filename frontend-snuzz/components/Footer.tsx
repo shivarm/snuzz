@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-1 text-center sm:text-left">
             <img src="/logo.svg" alt="SNUZZ" className="h-8 md:h-10 w-auto mb-4 md:mb-6 mx-auto sm:mx-0 sm:mt-5 md:mt-8" />
 
-            <div className="flex sm:gap-2 justify-center sm:justify-start">
+            <div className="flex gap-3 sm:gap-2 md:gap-1 justify-center sm:justify-start">
               {[Instagram, Facebook].map((Icon, i) => (
                 <div
                   key={i}
@@ -77,10 +77,10 @@ export default function Footer() {
             <div className="mt-1">
               <Button 
                 variant="ghost" 
-                className="h-auto px-3 sm:px-6 py-2 border border-teal-400 rounded-sm text-gray-600 hover:text-gray-900 font-normal text-sm md:text-base justify-center sm:justify-start group"
+                className="h-auto px-2 sm:px-6 py-1 sm:py-2 border border-teal-400 rounded-sm text-gray-600 hover:text-gray-900 font-normal text-xs sm:text-sm md:text-base justify-center sm:justify-start group"
               >
                 Contact support
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
           </div>

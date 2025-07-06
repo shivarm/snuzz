@@ -273,7 +273,7 @@ export default function Header({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
-                className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#3AF0F7]"
+                className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200"
               />
               {showSearchResults && searchQuery && (
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl z-50 max-h-64 overflow-y-auto">

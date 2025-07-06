@@ -40,9 +40,9 @@ export default function ReviewCard({ testimonials = defaultTestimonials }: Revie
           {testimonials.map((testimonial, i) => (
             <Card
               key={i}
-              className="p-4 border-0 transition-all duration-300 bg-gradient-to-br from-gray-100 to-[#F0F1F1] hover:-translate-y-2 w-full max-w-[350px]"
+              className="border-0 transition-all duration-300 bg-gradient-to-br from-gray-100 to-[#F0F1F1] hover:-translate-y-2 w-full max-w-[350px]"
             >
-              <CardContent className="p-0">
+              <CardContent className="px-4 py-2">
                 <div className="flex items-center space-x-1 mb-1">
                   {[...Array(5)].map((_, j) => (
                     <Star

@@ -530,7 +530,6 @@ export default function Component() {
 </section>
 */}
       <ReviewCard />
-      <Footer />
 
       <style jsx>{`
         @keyframes slide-in {

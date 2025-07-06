@@ -267,13 +267,12 @@ export default function Header({
               </a>
             ))}
             <div className="pt-4 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
+              <Search className="absolute left-3 top-[calc(50%+0.5rem)] transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
-                placeholder="Search products..."
                 className="w-full pl-10 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#3AF0F7]"
               />
               {showSearchResults && searchQuery && (

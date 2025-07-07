@@ -3,6 +3,8 @@ import './globals.css'
 
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import CartSidebar from '@/components/CartSidebar'
+import { CartProvider } from '@/contexts/CartContext'
 
 export const metadata: Metadata = {
   title: 'SnuzzShop - ProtoType Verion',
@@ -17,8 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <CartSidebar />
+        </CartProvider>
       </body>
     </html>
   )

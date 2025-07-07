@@ -4,31 +4,35 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ShoppingCart, Menu, X, Plus, Star, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useCart } from "@/contexts/CartContext";
 
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-  brand: string;
-}
+// Product data - move this to a separate file if needed
+const allProducts = [
+  {
+    id: 1,
+    name: "Klint Arctic Mint",
+    category: "NICOTINE POUCHES",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
+  },
+  {
+    id: 2,
+    name: "Klint Arctic Mint",
+    category: "NICOTINE POUCHES",
+    price: 4.99,
+    salePrice: 3.6,
+    rating: 4.8,
+    brand: "Klint",
+    image: "KLINT",
+  },
+  // Add more products as needed
+];
 
-interface HeaderProps {
-  cartItems: CartItem[];
-  setCartItems: (items: CartItem[] | ((prev: CartItem[]) => CartItem[])) => void;
-  cartOpen: boolean;
-  setCartOpen: (open: boolean) => void;
-  allProducts?: any[];
-}
-
-export default function Header({
-  cartItems,
-  setCartItems,
-  cartOpen,
-  setCartOpen,
-  allProducts = [],
-}: HeaderProps) {
+export default function Header() {
+  const { cartItems, setCartItems, cartOpen, setCartOpen, addToCart, getTotalItems } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -66,33 +70,6 @@ export default function Header({
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [searchFocused]);
-
-  const addToCart = (product: any) => {
-    setCartItems((prev) => {
-      const existingItem = prev.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      } else {
-        return [
-          ...prev,
-          {
-            id: product.id,
-            name: product.name,
-            price: product.salePrice,
-            quantity: 1,
-            image: product.image,
-            brand: product.brand,
-          },
-        ];
-      }
-    });
-  };
-
-  const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
 
   return (
     <header className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-[1.1rem]">

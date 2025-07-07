@@ -1,13 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Instagram, Facebook, ArrowRight } from "lucide-react";
+import { Instagram, Facebook, ArrowRight, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 export default function Footer() {
+  const [openDropdowns, setOpenDropdowns] = useState<{[key: string]: boolean}>({});
+
+  const toggleDropdown = (section: string) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
+  };
+
   return (
     <footer className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 px-4 py-8 md:py-12 lg:py-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12">
+          {/* Logo and Social Media */}
           <div className="sm:col-span-2 lg:col-span-1 text-center sm:text-left">
             <img src="/logo.svg" alt="SNUZZ" className="h-8 md:h-10 w-auto mb-4 md:mb-6 mx-auto sm:mx-0 sm:mt-5 md:mt-8" />
 
@@ -23,9 +34,16 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Shop Section */}
           <div className="text-center sm:text-left">
-            <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Shop</h4>
-            <ul className="space-y-2 md:space-y-3 text-gray-600">
+            <button
+              onClick={() => toggleDropdown('shop')}
+              className="flex items-center justify-between w-full sm:pointer-events-none"
+            >
+              <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Shop</h4>
+              <ChevronDown className={`w-4 h-4 sm:hidden transition-transform ${openDropdowns.shop ? 'rotate-180' : ''}`} />
+            </button>
+            <ul className={`space-y-2 md:space-y-3 text-gray-600 sm:block ${openDropdowns.shop ? 'block' : 'hidden sm:block'}`}>
               {["Brand", "Flavour", "Strength", "Snuzz Pro"].map((item) => (
                 <li key={item}>
                   <a
@@ -38,9 +56,17 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Favorites Section */}
           <div className="text-center sm:text-left">
-            <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Favorites</h4>
-            <ul className="space-y-2 md:space-y-3 text-gray-600">
+            <button
+              onClick={() => toggleDropdown('favorites')}
+              className="flex items-center justify-between w-full sm:pointer-events-none"
+            >
+              <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Favorites</h4>
+              <ChevronDown className={`w-4 h-4 sm:hidden transition-transform ${openDropdowns.favorites ? 'rotate-180' : ''}`} />
+            </button>
+            <ul className={`space-y-2 md:space-y-3 text-gray-600 sm:block ${openDropdowns.favorites ? 'block' : 'hidden sm:block'}`}>
               {["Klint Arctic Mint", "Klint Berry Blast", "Klint Cool Mint", "Klint Fresh Mint"].map((item, i) => (
                 <li key={i}>
                   <a
@@ -53,11 +79,17 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Information Section */}
           <div className="text-center sm:text-left">
-            <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">
-              Information
-            </h4>
-            <ul className="space-y-2 md:space-y-3 text-gray-600">
+            <button
+              onClick={() => toggleDropdown('information')}
+              className="flex items-center justify-between w-full sm:pointer-events-none"
+            >
+              <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Information</h4>
+              <ChevronDown className={`w-4 h-4 sm:hidden transition-transform ${openDropdowns.information ? 'rotate-180' : ''}`} />
+            </button>
+            <ul className={`space-y-2 md:space-y-3 text-gray-600 sm:block ${openDropdowns.information ? 'block' : 'hidden sm:block'}`}>
               {["Contact Us", "Order Status", "Shipping", "Privacy"].map((item) => (
                 <li key={item}>
                   <a
@@ -70,11 +102,17 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Contact Us Section */}
           <div className="text-center sm:text-left">
-            <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">
-              Contact Us
-            </h4>
-            <div className="mt-1">
+            <button
+              onClick={() => toggleDropdown('contact')}
+              className="flex items-center justify-between w-full sm:pointer-events-none"
+            >
+              <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 text-base md:text-lg">Contact Us</h4>
+              <ChevronDown className={`w-4 h-4 sm:hidden transition-transform ${openDropdowns.contact ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`mt-1 sm:block ${openDropdowns.contact ? 'block' : 'hidden sm:block'}`}>
               <Button 
                 variant="ghost" 
                 className="h-auto px-2 sm:px-6 py-1 sm:py-2 border border-teal-400 rounded-sm text-gray-600 hover:text-gray-900 font-normal text-xs sm:text-sm md:text-base justify-center sm:justify-start group"

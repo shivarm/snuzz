@@ -15,7 +15,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 px-4 py-4 md:py-12 lg:pt-0 lg:pb-16">
+    <footer className="from-white via-gray-50 to-white text-gray-900 px-4 py-4 md:py-12 lg:pt-0 lg:pb-16">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12 lg:mb-4">
           {/* Logo and Social Media */}

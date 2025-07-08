@@ -70,7 +70,7 @@ export default function ReviewCard({ testimonials = defaultTestimonials }: Revie
         }
       `}</style>
       <div className="max-w-[1400px] mx-auto">
-        <h2 className="text-5xl font-bold text-gray-900 text-center mb-10 md:mb-20 lg:mb-10">Reviews</h2>
+        <h2 className="text-4xl font-bold text-gray-900 text-center mb-10 md:mb-20 lg:mb-10">Reviews</h2>
         
         {/* Animated Floating Layout for All Devices */}
         <div className="relative overflow-hidden h-[200px] md:h-[400px] lg:h-[250px]">

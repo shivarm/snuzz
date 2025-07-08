@@ -2,25 +2,15 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import FeatureCard from "@/components/FeatureCard";
 import ReviewCard from "@/components/ReviewCard";
 import Link from "next/link";
 import { useCart } from "@/contexts/CartContext";
 import {
-  ShoppingBag,
   Star,
   ArrowRight,
-  X,
-  Plus,
-  Minus,
-  Trash2,
-  CreditCard,
-  Lock,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Product data with 50+ items
 const allProducts = [

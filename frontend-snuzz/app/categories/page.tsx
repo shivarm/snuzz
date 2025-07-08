@@ -1,8 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+import { useState } from "react"
 import CartSidebar from "@/components/cart-sidebar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -137,14 +135,6 @@ export default function CategoryPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header 
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-        cartOpen={cartOpen}
-        setCartOpen={setCartOpen}
-        allProducts={mockProducts}
-      />
-      
       <CartSidebar
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
@@ -396,8 +386,6 @@ export default function CategoryPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   )
 }

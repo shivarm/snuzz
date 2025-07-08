@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, ShoppingCart, Menu, X, Plus, Star, ShoppingBag } from "lucide-react";
+import { Search, Menu, X, Plus, Star, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCart } from "@/contexts/CartContext";
 
@@ -28,7 +28,7 @@ const allProducts = [
     brand: "Klint",
     image: "KLINT",
   },
-  // Add more products as needed
+   
 ];
 
 export default function Header() {
@@ -75,11 +75,39 @@ export default function Header() {
     <header className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-[1.1rem]">
       <div className="max-w-[1440px] mx-auto px-8 py-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-12">
+          {/* Mobile Layout: Hamburger - Logo - Cart */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </Button>
+            
+            <a href="/" className="flex-1 flex justify-center">
+              <img src="/logo.svg" alt="SNUZZ" className="h-10 w-auto" />
+            </a>
+            
+            <Button
+              variant="ghost"
+              onClick={() => setCartOpen(true)}
+              className="relative bg-gradient-to-r from-[#3AF0F7] to-[#8ef7fb] hover:from-[#2de0e7] hover:to-[#7ee6ea] text-black transition-all duration-300 transform hover:scale-110 rounded-md h-8 px-2"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold animate-pulse">
+                  {getTotalItems()}
+                </span>
+              )}
+            </Button>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden md:flex items-center space-x-12">
             <a href="/">
               <img src="/logo.svg" alt="SNUZZ" className="h-12 w-auto" />
             </a>
-            
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
@@ -101,7 +129,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             <div className="relative hidden lg:block">
               <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
               <Input
@@ -211,15 +239,6 @@ export default function Header() {
                   {getTotalItems()}
                 </span>
               )}
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
         </div>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Header from "@/components/Header"
 import { useState } from "react"
-import Footer from "@/components/Footer"
+ 
 
 interface CartItem {
   id: number
@@ -53,13 +53,7 @@ export default function SnuzzProLanding() {
       }}
     >
       {/* Header */}
-      <Header
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-        cartOpen={cartOpen}
-        setCartOpen={setCartOpen}
-        allProducts={allProducts}
-      />
+      
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center px-8 py-20 pt-32 text-center">
@@ -161,9 +155,6 @@ export default function SnuzzProLanding() {
           </Button>
         </div>
       </section>
-
-      {/* Footer */}
-        <Footer />
     </div>
   )
 }

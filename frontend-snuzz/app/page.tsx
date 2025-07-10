@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import FeatureCard from "@/components/FeatureCard";
-import ReviewCard from "@/components/ReviewCard";
 import Link from "next/link";
 import { useCart } from "@/contexts/CartContext";
 import {
@@ -12,161 +11,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-// Product data with 50+ items
-const allProducts = [
-  // Nicotine Pouches
-  {
-    id: 1,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-
-  {
-    id: 2,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 3,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 4,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 5,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 6,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 7,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 8,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 9,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 10,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 11,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 12,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 13,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 14,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 15,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-];
+ 
 
 export default function Component() {
   const [visibleProducts, setVisibleProducts] = useState(15);
@@ -240,7 +85,7 @@ export default function Component() {
       
 {/* TODO: Product Card */}
  
-      <ReviewCard />
+ 
 
       <style jsx>{`
         @keyframes slide-in {

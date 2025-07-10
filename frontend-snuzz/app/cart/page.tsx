@@ -20,8 +20,7 @@ import {
   Heart,
 } from "lucide-react"
 import Link from "next/link"
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
+ 
 
 interface CartItem {
   id: number
@@ -110,7 +109,7 @@ export default function CartPage() {
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-        <Header cartItems={cartItems} setCartItems={setCartItems} cartOpen={cartOpen} setCartOpen={setCartOpen} />
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-32">
           <div className="text-center py-20">
             <div className="relative">
@@ -135,14 +134,14 @@ export default function CartPage() {
             </Link>
           </div>
         </div>
-        <Footer />
+ 
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      <Header cartItems={cartItems} setCartItems={setCartItems} cartOpen={cartOpen} setCartOpen={setCartOpen} />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-32">
         {/* Header */}
         <div className="flex items-center justify-between mb-10">
@@ -413,7 +412,7 @@ export default function CartPage() {
           </div>
         </div>
       </div>
-      <Footer />
+ 
     </div>
   )
 }

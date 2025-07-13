@@ -54,7 +54,7 @@ export default function ReviewCard({ testimonials = defaultTestimonials }: Revie
   const testimonialsToShow = isMobile ? testimonials.slice(0, 2) : testimonials;
 
   return (
-    <section className="px-5 py-10 md:py-20 lg:pt-20 lg:pb-0 bg-white">
+    <section className="px-5 lg:pb-0 bg-white">
       <style jsx>{`
         @keyframes scroll-left {
           0% {

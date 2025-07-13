@@ -5,7 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Product data with 50+ items
+export const getDiscountPercentage = (price: number, salePrice: number) => {
+  return Math.round(((price - salePrice) / price) * 100);
+};
+
 export const allProducts = [
   // Nicotine Pouches
   {

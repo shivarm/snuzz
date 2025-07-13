@@ -2,37 +2,33 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Menu, X, Plus, Star, ShoppingBag } from "lucide-react";
+import { Search, ShoppingCart, Menu, X, Plus, Star, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useCart } from "@/contexts/CartContext";
 
-// Product data - move this to a separate file if needed
-const allProducts = [
-  {
-    id: 1,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-  {
-    id: 2,
-    name: "Klint Arctic Mint",
-    category: "NICOTINE POUCHES",
-    price: 4.99,
-    salePrice: 3.6,
-    rating: 4.8,
-    brand: "Klint",
-    image: "KLINT",
-  },
-   
-];
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+  brand: string;
+}
 
-export default function Header() {
-  const { cartItems, setCartItems, cartOpen, setCartOpen, addToCart, getTotalItems } = useCart();
+interface HeaderProps {
+  cartItems: CartItem[];
+  setCartItems: (items: CartItem[] | ((prev: CartItem[]) => CartItem[])) => void;
+  cartOpen: boolean;
+  setCartOpen: (open: boolean) => void;
+  allProducts?: any[];
+}
+
+export default function Header({
+  cartItems,
+  setCartItems,
+  cartOpen,
+  setCartOpen,
+  allProducts = [],
+}: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -71,12 +67,39 @@ export default function Header() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [searchFocused]);
 
+  const addToCart = (product: any) => {
+    setCartItems((prev) => {
+      const existingItem = prev.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        return [
+          ...prev,
+          {
+            id: product.id,
+            name: product.name,
+            price: product.salePrice,
+            quantity: 1,
+            image: product.image,
+            brand: product.brand,
+          },
+        ];
+      }
+    });
+  };
+
+  const getTotalItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
   return (
     <header className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-[1.1rem]">
       <div className="max-w-[1440px] mx-auto px-8 py-6">
-        <div className="flex items-center justify-between">
-          {/* Mobile Layout: Hamburger - Logo - Cart */}
-          <div className="md:hidden flex items-center justify-between w-full">
+        {/* Mobile Header */}
+        <div className="flex md:hidden items-center justify-between w-full">
+          <div className="flex-none">
             <Button
               variant="ghost"
               size="icon"
@@ -84,11 +107,15 @@ export default function Header() {
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
-            
-            <a href="/" className="flex-1 flex justify-center">
+          </div>
+
+          <div className="flex-1 flex justify-center">
+            <a href="/" className="transform scale-90">
               <img src="/logo.svg" alt="SNUZZ" className="h-10 w-auto" />
             </a>
-            
+          </div>
+
+          <div className="flex-none">
             <Button
               variant="ghost"
               onClick={() => setCartOpen(true)}
@@ -102,15 +129,17 @@ export default function Header() {
               )}
             </Button>
           </div>
+        </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden md:flex items-center space-x-12">
+        {/* Desktop Header */}
+        <div className="hidden md:flex items-center justify-between">
+          <div className="flex items-center space-x-12">
             <a href="/">
               <img src="/logo.svg" alt="SNUZZ" className="h-12 w-auto" />
             </a>
           </div>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="flex items-center space-x-8">
             {[
               { label: "Shop", href: "/categories" },
               { label: "Brands", href: "#" },
@@ -129,7 +158,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <div className="relative hidden lg:block">
               <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 z-10" />
               <Input

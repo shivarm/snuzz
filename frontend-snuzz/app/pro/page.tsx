@@ -3,7 +3,6 @@
 import Image from "next/image"
 import { ChevronDown, Check, Instagram, Facebook, Twitter, TwitterIcon as TikTok } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import Header from "@/components/Header"
 import { useState } from "react"
 

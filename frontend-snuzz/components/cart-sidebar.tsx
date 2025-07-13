@@ -89,7 +89,7 @@ export default function CartSidebar({ cartOpen, setCartOpen, cartItems, setCartI
                 {cartItems.map((item, index) => (
                   <div
                     key={item.id}
-                    className="flex items-center space-x-3 md:space-x-4 p-3 md:p-4 from-gray-50 to-white rounded-lg md:rounded-xl border border-gray-100 transition-all duration-300 hover:-translate-y-1 animate-slide-in"
+                    className="flex items-center space-x-3 md:space-x-4 p-3 md:p-4 from-gray-50 to-white rounded-lg md:rounded-xl border border-gray-100"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
                     <div className="w-12 md:w-16 h-12 md:h-16 rounded-lg flex items-center justify-center">

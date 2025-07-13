@@ -16,7 +16,6 @@ import {
   Truck,
   Shield,
   Tag,
-  Star,
   Heart,
 } from "lucide-react"
 import Link from "next/link"

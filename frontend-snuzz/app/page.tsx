@@ -230,13 +230,13 @@ export default function Component() {
       )}
 
       {/* Enhanced Hero Section with Better Mobile Responsiveness */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50/30 overflow-hidden">
-        {/* Centered, smaller background circle for glow */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full bg-gradient-to-br from-[#3AF0F7]/10 via-[#8ef7fb]/10 to-transparent z-0 pointer-events-none"></div>
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[90vh] w-full">
+      <section className="relative flex items-start justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50/30 overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
+          {/* Background circle contained within the max-width container */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[900px] h-[600px] md:h-[800px] lg:h-[900px] rounded-full bg-gradient-to-br from-[#3AF0F7]/10 via-[#8ef7fb]/10 to-transparent -z-10"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-0 w-full">
             {/* Left Content */}
-            <div className="flex flex-col justify-center items-start space-y-6 md:space-y-8 w-full max-w-xl mx-auto lg:mx-0 pt-12 lg:pt-0">
+            <div className="flex flex-col items-start space-y-4 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0 pt-4 lg:pt-16">
               {/* Rating */}
               <div className="flex items-center space-x-2 mb-2">
                 <Star className="w-5 h-5 text-black fill-black" />
@@ -252,7 +252,7 @@ export default function Component() {
               </p>
               {/* CTA Button */}
               <Link href="/categories">
-                <Button className="bg-[#3AF0F7] hover:bg-[#2de0e7] text-black font-medium px-7 py-6 rounded-2xl text-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+                <Button className="bg-[#3AF0F7] hover:bg-[#2de0e7] text-black font-medium px-5 py-5 rounded-2xl text-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
                   Buy now
                   <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -274,14 +274,14 @@ export default function Component() {
               </div>
             </div>
             {/* Right Hero SVG Image - much larger, fills hero section */}
-            <div className="flex items-center justify-end w-full h-full min-h-[600px] lg:min-h-[900px]">
+            <div className="flex items-start justify-center lg:justify-end w-full h-full pt-8 lg:pt-0">
               <Image
                 src="/group-32.svg"
                 alt="Hero visual"
-                className="object-contain drop-shadow-xl pointer-events-none relative top-[108px] left-0"
-                width={676.39}
-                height={676.39}
-                style={{ borderRadius: "692.17px" }}
+                className="object-contain drop-shadow-xl pointer-events-none w-[500px] h-[500px] lg:w-[700px] lg:h-[700px]"
+                width={700}
+                height={700}
+                priority
               />
             </div>
           </div>

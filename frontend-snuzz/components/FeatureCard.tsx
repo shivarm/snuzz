@@ -5,10 +5,10 @@ import Image from "next/image";
 export default function FeatureCard() {
   return (
      <>
-      <section className="px-4 bg-white">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
-            <div className="flex flex-col items-center text-center space-y-4 flex-1 max-w-xs group  transform translate-y-12">
+      <section className="px-4 bg-gradient-to-b from-transparent via-transparent to-white pt-0 mt-0">
+        <div className="max-w-[1440px] mx-auto pb-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16 pt-0 bg-white bg-opacity-0 md:bg-opacity-10 lg:bg-opacity-20 backdrop-blur-sm rounded-3xl px-4 py-8">
+            <div className="flex flex-col items-center text-center space-y-4 flex-1 max-w-xs group transform translate-y-12">
               <div className="relative overflow-hidden rounded-lg">
                 <Image
                   src="/dollar.svg"

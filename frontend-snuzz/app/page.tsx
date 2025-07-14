@@ -230,13 +230,13 @@ export default function Component() {
       )}
 
       {/* Enhanced Hero Section with Better Mobile Responsiveness */}
-      <section className="relative flex items-start justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50/30 overflow-hidden">
+      <section className="relative flex items-start justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50/30 overflow-hidden pb-0 mb-0">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
           {/* Background circle contained within the max-width container */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[900px] h-[600px] md:h-[800px] lg:h-[900px] rounded-full bg-gradient-to-br from-[#3AF0F7]/10 via-[#8ef7fb]/10 to-transparent -z-10"></div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-0 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-0 w-full relative">
             {/* Left Content */}
-            <div className="flex flex-col items-start space-y-4 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0 pt-4 lg:pt-16">
+            <div className="flex flex-col items-start space-y-4 md:space-y-6 w-full max-w-xl mx-auto lg:mx-0 pt-4 lg:pt-16 relative z-10">
               {/* Rating */}
               <div className="flex items-center space-x-2 mb-2">
                 <Star className="w-5 h-5 text-black fill-black" />
@@ -273,24 +273,28 @@ export default function Component() {
                 </div>
               </div>
             </div>
-            {/* Right Hero SVG Image - much larger, fills hero section */}
-            <div className="flex items-start justify-center lg:justify-end w-full h-full pt-8 lg:pt-0">
-              <Image
-                src="/group-32.svg"
-                alt="Hero visual"
-                className="object-contain drop-shadow-xl pointer-events-none w-[500px] h-[500px] lg:w-[700px] lg:h-[700px]"
-                width={700}
-                height={700}
-                priority
-              />
+            {/* Right Hero SVG Image - adjusted positioning with controlled height */}
+            <div className="relative flex items-center lg:items-start justify-center lg:justify-start w-full h-full">
+              <div className="lg:-left-52 flex items-center justify-center lg:mt-16">
+                <Image
+                  src="/group-32.svg"
+                  alt="Hero visual"
+                  className="object-contain drop-shadow-xl pointer-events-none w-[600px] h-[600px] lg:w-[1400px] lg:h-[1000px] transform hover:scale-105 transition-transform duration-500"
+                  width={1400}
+                  height={1000}
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <FeatureCard />
+      <div className="mt-[-12rem] md:mt-[-15rem] lg:mt-[-20rem] relative z-0">
+        <FeatureCard />
+      </div>
       
 {/*Product Card */}
-<section id="products-section" className="px-5 py-20 from-gray-50 to-white">
+<section id="products-section" className="px-5 py-20 bg-white">
   <div className="max-w-[1440px] mx-auto">
     <div className="text-center mb-10">
       <h2 className="text-4xl font-bold text-gray-900 ">Best selling</h2>

@@ -150,7 +150,7 @@ export default function Header({
               <a
                 key={index}
                 href={item.href}
-                className="font-semibold hover:text-[#3AF0F7] transition-all duration-300"
+                className="font-medium hover:text-[#3AF0F7] transition-all duration-300"
               >
                 {item.label}
               </a>

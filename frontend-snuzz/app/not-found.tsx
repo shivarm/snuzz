@@ -2,15 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect } from "react";
 import { Home } from "lucide-react";
+import Head from "next/head";
 
 export default function NotFound() {
-  useEffect(() => {
-    document.title = "404 - Page Not Found";
-  }, []);
-
   return (
+    <>
+      <Head>
+        <title>404 - Page Not Found</title>
+      </Head>
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-white px-4">
       {/* Background decoration elements */}
       <div className="absolute inset-0 overflow-hidden z-0">

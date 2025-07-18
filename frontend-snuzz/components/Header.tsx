@@ -95,7 +95,7 @@ export default function Header({
   };
 
   return (
-    <header className="w-full bg-gradient-to-br from-gray-50 via-white to-blue-50/30 text-[1.1rem]">
+    <header className="w-full bg-white text-[1.1rem]">
       <div className="max-w-[1440px] mx-auto px-8 py-6">
         {/* Mobile Header */}
         <div className="flex md:hidden items-center justify-between w-full">
@@ -140,20 +140,13 @@ export default function Header({
           </div>
 
           <nav className="flex items-center space-x-8">
-            {[
-              { label: "Shop", href: "/categories" },
-              { label: "Brands", href: "#" },
-              { label: "Flavor", href: "#" },
-              { label: "Strength", href: "#" },
-              { label: "snuzzPRO", href: "/pro" },
-            ].map((item, index) => (
+            {["Shop", "Brands", "Flavor", "Strength", "snuzzPRO"].map((item, index) => (
               <a
                 key={index}
-                href={item.href}
-                className="relative font-semibold hover:text-[#3AF0F7] transition-all duration-300 group"
+                href="/"
+                className="font-semibold hover:text-[#3AF0F7] transition-all duration-300"
               >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#3AF0F7] to-[#8ef7fb] group-hover:w-full transition-all duration-300"></span>
+                {item}
               </a>
             ))}
           </nav>

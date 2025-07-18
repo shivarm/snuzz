@@ -214,15 +214,15 @@ export default function Component() {
         </div>
       )}
       <Hero />
-      <div className="mt-[-12rem] md:mt-[-15rem] lg:mt-[-20rem] relative z-0">
+      <div className="mt-[-15rem] sm:mt-[-18rem] md:mt-[-20rem] lg:mt-[-22rem] xl:mt-[-24rem] relative z-0">
         <FeatureCard />
       </div>
 
       {/*Product Card */}
-      <section id="products-section" className="px-5 py-20 bg-white">
+      <section id="products-section" className="px-5 py-20 pt-28 sm:pt-24 md:pt-20 bg-white relative z-10">
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-gray-900 ">Best selling</h2>
+            <h2 className="text-4xl font-bold text-gray-900">Best selling</h2>
           </div>
           <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols- 2xl:grid-cols-5 gap-x-0 gap-y-5 mb-10 md:mb-12 justify-items-center">
             {allProducts.slice(0, visibleProducts).map((product) => (

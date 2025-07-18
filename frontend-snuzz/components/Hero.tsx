@@ -6,14 +6,12 @@ import Link from "next/link";
 import { Star, ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Define proper interface for AnimatedCounter props
 interface AnimatedCounterProps {
   end: number | string;
   duration?: number;
   label: string;
 }
 
-// Counter component for stats animation
 const AnimatedCounter = ({ end, duration = 2000, label }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLDivElement | null>(null);

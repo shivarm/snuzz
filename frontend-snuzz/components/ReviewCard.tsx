@@ -68,20 +68,34 @@ export default function ReviewCard({ testimonials = defaultTestimonials }: Revie
         .animate-scroll-left {
           animation: scroll-left 20s linear infinite;
         }
+        
+        .review-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 640px) {
+          .review-text {
+            -webkit-line-clamp: 2;
+          }
+        }
       `}</style>
       <div className="max-w-[1400px] mx-auto">
         <h2 className="text-4xl font-bold text-gray-900 text-center mb-10 md:mb-20 lg:mb-10">Reviews</h2>
         
         {/* Animated Floating Layout for All Devices */}
-        <div className="relative overflow-hidden h-[200px] md:h-[400px] lg:h-[250px]">
+        <div className="relative overflow-hidden h-auto md:h-[400px] lg:h-[250px]">
           <div className="flex animate-scroll-left">
             {[...testimonialsToShow, ...testimonialsToShow].map((testimonial, i) => (
               <Card
                 key={i}
                 className="border-0 transition-all duration-300 bg-gradient-to-br from-gray-100 to-[#F0F1F1] w-[284px] rounded-[19px] flex-shrink-0 mx-4"
               >
-                <CardContent className="px-5 py-2">
-                  <div className="flex items-center space-x-1 mb-1">
+                <CardContent className="px-5 py-4 flex flex-col h-full">
+                  <div className="flex items-center space-x-1 mb-2">
                     {[...Array(5)].map((_, j) => (
                       <Star
                         key={j}
@@ -91,8 +105,10 @@ export default function ReviewCard({ testimonials = defaultTestimonials }: Revie
                       />
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-1 text-sm leading-relaxed">{testimonial.review}</p>
-                  <div className="flex items-center">
+                  <p className="review-text text-gray-700 mb-2 text-sm leading-relaxed flex-grow">
+                    {testimonial.review}
+                  </p>
+                  <div className="flex items-center mt-auto">
                     <div className="flex items-center space-x-2">
                       <CircleUserRound />
                       <p className="font-semibold text-sm text-gray-900">{testimonial.name}</p>

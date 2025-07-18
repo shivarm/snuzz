@@ -139,14 +139,20 @@ export default function Header({
             </a>
           </div>
 
-          <nav className="flex items-center space-x-8">
-            {["Shop", "Brands", "Flavor", "Strength", "snuzzPRO"].map((item, index) => (
+           <nav className="flex items-center space-x-8">
+            {[
+              { label: "Shop", href: "/categories" },
+              { label: "Brands", href: "#" },
+              { label: "Flavor", href: "#" },
+              { label: "Strength", href: "#" },
+              { label: "snuzzPRO", href: "/pro" },
+            ].map((item, index) => (
               <a
                 key={index}
-                href="/"
+                href={item.href}
                 className="font-semibold hover:text-[#3AF0F7] transition-all duration-300"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>

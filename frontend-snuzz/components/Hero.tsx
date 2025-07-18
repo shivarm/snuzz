@@ -4,12 +4,81 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Star, ArrowRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+
+// Define proper interface for AnimatedCounter props
+interface AnimatedCounterProps {
+  end: number | string;
+  duration?: number;
+  label: string;
+}
+
+// Counter component for stats animation
+const AnimatedCounter = ({ end, duration = 2000, label }: AnimatedCounterProps) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLDivElement | null>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          const startTime = Date.now();
+          const endValue =
+            typeof end === "string" && end.includes("+")
+              ? parseInt(end)
+              : end as number;
+
+          const timer = setInterval(() => {
+            const timePassed = Date.now() - startTime;
+            const progress = Math.min(timePassed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuad = progress * (2 - progress);
+            const currentCount = Math.floor(easeOutQuad * endValue);
+
+            setCount(currentCount);
+
+            if (progress === 1) {
+              clearInterval(timer);
+            }
+          }, 16); // ~60fps
+
+          if (observer.current) {
+            observer.current.disconnect();
+          }
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (countRef.current) {
+      observer.current.observe(countRef.current);
+    }
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [end, duration]);
+
+  return (
+    <div ref={countRef} className="flex flex-col items-center">
+      <div className="text-3xl md:text-4xl font-bold text-gray-900">
+        {typeof end === "string" && end.includes("+") ? `${count}+` : count}
+      </div>
+      <div className="text-base text-gray-600">{label}</div>
+    </div>
+  );
+};
 
 export default function Hero() {
   return (
     <>
       {/* Enhanced Hero Section with Better Mobile Responsiveness */}
-      <section className="relative flex items-start justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50/30 overflow-hidden pb-0 mb-0">
+      <section className="relative flex items-start justify-center bg-white overflow-hidden pb-0 mb-0">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
           {/* Background circle contained within the max-width container */}
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] md:w-[800px] lg:w-[900px] h-[600px] md:h-[800px] lg:h-[900px] rounded-full bg-gradient-to-br from-[#3AF0F7]/10 via-[#8ef7fb]/10 to-transparent -z-10"></div>
@@ -19,15 +88,17 @@ export default function Hero() {
               {/* Rating */}
               <div className="flex items-center space-x-2 mb-2">
                 <Star className="w-5 h-5 text-black fill-black" />
-                <span className="text-gray-700 font-medium text-sm">4.47 | 537 Reviews</span>
+                <span className="text-gray-700 font-medium text-sm">
+                  4.47 | 537 Reviews
+                </span>
               </div>
               {/* Main Heading */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
                 Never run out of snus again
               </h1>
               <p className="text-xl md:text-2xl text-gray-900 leading-relaxed max-w-2xl">
-                Choose from huge sortiment of exclusive brands, flavors and strength for best price
-                on market with free shipping.
+                Choose from huge sortiment of exclusive brands, flavors and
+                strength for best price on market with free shipping.
               </p>
               {/* CTA Button */}
               <Link href="/categories">
@@ -36,19 +107,16 @@ export default function Hero() {
                   <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              {/* Stats with vertical dividers */}
+              {/* Stats with vertical dividers - now with animation */}
               <div className="flex gap-16 pt-10 border-t border-gray-200 w-full mt-6">
                 <div className="flex flex-col items-center pr-12 border-r border-gray-300 last:border-none">
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900">47</div>
-                  <div className="text-base text-gray-600">Orders today</div>
+                  <AnimatedCounter end={47} label="Orders today" />
                 </div>
                 <div className="flex flex-col items-center px-12 border-r border-gray-300 last:border-none">
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900">7000+</div>
-                  <div className="text-base text-gray-600">Orders</div>
+                  <AnimatedCounter end="7000+" label="Orders" />
                 </div>
                 <div className="flex flex-col items-center pl-12">
-                  <div className="text-3xl md:text-4xl font-bold text-gray-900">4000+</div>
-                  <div className="text-base text-gray-600">Customers</div>
+                  <AnimatedCounter end="4000+" label="Customers" />
                 </div>
               </div>
             </div>

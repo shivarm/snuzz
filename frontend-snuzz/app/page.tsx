@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import FeatureCard from "@/components/FeatureCard";
 import ProductCard from "@/components/ProductCard";
 import Hero from "@/components/Hero";
-import { ShoppingBag, X, Plus, Minus, Trash2, CreditCard, Lock } from "lucide-react";
+import CartSidebar from "@/components/cart-sidebar";
 import { useState } from "react";
 import { allProducts } from "@/lib/utils";
 
@@ -44,34 +44,12 @@ export default function Component() {
             name: product.name,
             price: product.salePrice,
             quantity: 1,
-            image: product.image,
+            image: "/mint.png", 
             brand: product.brand,
           },
         ];
       }
     });
-  };
-
-  const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity === 0) {
-      setCartItems((prev) => prev.filter((item) => item.id !== id));
-    } else {
-      setCartItems((prev) =>
-        prev.map((item) => (item.id === id ? { ...item, quantity: newQuantity } : item))
-      );
-    }
-  };
-
-  const removeFromCart = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const getTotalItems = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
-
-  const getTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   return (
@@ -85,134 +63,12 @@ export default function Component() {
         allProducts={allProducts}
       />
       {/* Shopping Cart Sidebar */}
-      {/* Enhanced Shopping Cart Sidebar with Smooth Animations */}
-      {cartOpen && (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-          {/* Backdrop with smooth fade */}
-          <div
-            className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-              cartOpen ? "opacity-100" : "opacity-0"
-            }`}
-            onClick={() => setCartOpen(false)}
-          ></div>
-
-          {/* Cart Sidebar with smooth slide animation */}
-          <div
-            className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl transform transition-transform duration-300 ease-out ${
-              cartOpen ? "translate-x-0" : "translate-x-full"
-            }`}
-          >
-            <div className="flex flex-col h-full">
-              {/* Cart Header with enhanced styling */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-[#3AF0F7]/10 to-[#8ef7fb]/10 backdrop-blur-sm">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-r from-[#3AF0F7] to-[#8ef7fb] rounded-full flex items-center justify-center">
-                    <ShoppingBag className="w-5 h-5 text-black" />
-                  </div>
-                  <h2 className="text-xl font-bold text-gray-900">
-                    Shopping Cart ({getTotalItems()})
-                  </h2>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setCartOpen(false)}
-                  className="hover:bg-gray-100 rounded-full transition-all duration-200 hover:scale-110"
-                >
-                  <X className="w-6 h-6" />
-                </Button>
-              </div>
-
-              {/* Cart Items with staggered animations */}
-              <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                {cartItems.length === 0 ? (
-                  <div className="text-center py-12 animate-fade-in">
-                    <div className="w-24 h-24 bg-gradient-to-br from-[#3AF0F7]/20 to-[#8ef7fb]/20 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                      <ShoppingBag className="w-12 h-1 text-gray-300" />
-                    </div>
-                    <p className="text-gray-500 text-lg font-semibold mb-2">Your cart is empty</p>
-                    <p className="text-gray-400 text-sm">Add some products to get started!</p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {cartItems.map((item, index) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center space-x-4 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border border-gray-100 hover:shadow-md transition-all duration-300 hover:-translate-y-1 animate-slide-in"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <div className="w-16 h-16 bg-gradient-to-br from-[#8cedf8] to-[#3AF0F7]/30 rounded-lg flex items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-200">
-                          <div className="text-gray-800 font-bold text-xs md:text-sm">
-                            {item.image}
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-gray-900 text-sm">{item.name}</h3>
-                          <p className="text-gray-500 text-xs">{item.brand}</p>
-                          <p className="text-[#3AF0F7] font-bold">€{item.price.toFixed(2)}</p>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="w-8 h-8 hover:bg-red-50 hover:border-red-200 transition-all duration-200"
-                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          >
-                            <Minus className="w-3 h-3" />
-                          </Button>
-                          <span className="w-8 text-center font-semibold bg-gray-50 rounded px-2 py-1">
-                            {item.quantity}
-                          </span>
-                          <Button
-                            size="icon"
-                            variant="outline"
-                            className="w-8 h-8 hover:bg-green-50 hover:border-green-200 transition-all duration-200"
-                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          >
-                            <Plus className="w-3 h-3" />
-                          </Button>
-                        </div>
-                        <Button
-                          size="icon"
-                          variant="ghost"
-                          className="text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-all duration-200 hover:scale-110"
-                          onClick={() => removeFromCart(item.id)}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Enhanced Cart Footer */}
-              {cartItems.length > 0 && (
-                <div className="border-t border-gray-200 p-6 bg-gradient-to-r from-gray-50 to-white backdrop-blur-sm animate-slide-up">
-                  <div className="flex justify-between items-center mb-4 p-4 bg-white rounded-xl shadow-sm">
-                    <span className="text-lg font-semibold text-gray-900">Total:</span>
-                    <span className="text-2xl font-bold text-[#3AF0F7] animate-pulse">
-                      €{getTotalPrice().toFixed(2)}
-                    </span>
-                  </div>
-                  <Button className="w-full bg-gradient-to-r from-[#3AF0F7] to-[#8ef7fb] hover:from-[#2de0e7] hover:to-[#7ee6ea] text-black font-bold py-4 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 relative overflow-hidden group">
-                    {/* Button shine effect */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
-                    <span className="relative flex items-center justify-center">
-                      <Lock className="w-5 h-5 mr-2" />
-                      Secure Checkout
-                    </span>
-                  </Button>
-                  <div className="flex items-center justify-center mt-3 text-xs text-gray-500 animate-fade-in">
-                    <CreditCard className="w-4 h-4 mr-1" />
-                    Secure payment with SSL encryption
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      <CartSidebar 
+        cartOpen={cartOpen}
+        setCartOpen={setCartOpen}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+      />
       <Hero />
       <div className="mt-[-15rem] sm:mt-[-18rem] md:mt-[-20rem] lg:mt-[-22rem] xl:mt-[-24rem] relative z-0">
         <FeatureCard />

@@ -4,15 +4,8 @@ import ProductCard from "@/components/ProductCard"
 import { useState } from "react"
 import Header from "@/components/Header"
 import CartSidebar from "@/components/cart-sidebar"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Star, ChevronDown, Plus } from 'lucide-react'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuCheckboxItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import FilterDropDown from "@/components/FilterDropDown"
+import { BrandIcon, FlavorIcon, StrengthIcon } from "@/components/filter-icons"
 import {
   Pagination,
   PaginationContent,
@@ -55,7 +48,7 @@ const mockProducts: Product[] = Array.from({ length: 40 }, (_, i) => ({
   salePrice: 5.49,
   rating: 4.5,
   reviews: 128,
-  image: "/mint.png", // Updated to use actual image path
+  image: "/mint.png",  
   isHotSelling: i % 3 === 0,
   strength: i % 3 === 0 ? "Strong" : i % 3 === 1 ? "Medium" : "Light",
   flavor: i % 4 === 0 ? "Mint" : i % 4 === 1 ? "Berry" : i % 4 === 2 ? "Citrus" : "Original",
@@ -125,9 +118,9 @@ export default function CategoryPage() {
         setCartItems={setCartItems}
       />
 
-      <main className="pt-16">
+    
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-[#3AF0F7]/10 to-[#8ef7fb]/10 py-8 md:py-10">
+        <section className="bg-gradient-to-r from-[#3AF0F7]/10 to-[#8ef7fb]/10 py-8">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Best selling</h1>
             <p className="text-gray-600 text-lg">Discover our most popular nicotine products</p>
@@ -135,97 +128,49 @@ export default function CategoryPage() {
         </section>
 
         {/* Filters */}
-        <section className="py-6 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <div className="flex flex-wrap gap-4">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="bg-white border-2 border-gray-200 hover:border-[#3AF0F7] transition-colors">
-                    <span className="mr-2">🏷️</span>
-                    Brands
-                    <ChevronDown className="ml-2 w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {brands.map(brand => (
-                    <DropdownMenuCheckboxItem
-                      key={brand}
-                      checked={selectedBrands.includes(brand)}
-                      onCheckedChange={(checked) => {
-                        if (checked) {
-                          setSelectedBrands([...selectedBrands, brand])
-                        } else {
-                          setSelectedBrands(selectedBrands.filter(b => b !== brand))
-                        }
-                      }}
-                    >
-                      {brand}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="bg-white border-2 border-gray-200 hover:border-[#3AF0F7] transition-colors">
-                    <span className="mr-2">🍃</span>
-                    Flavors
-                    <ChevronDown className="ml-2 w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {flavors.map(flavor => (
-                    <DropdownMenuCheckboxItem
-                      key={flavor}
-                      checked={selectedFlavors.includes(flavor)}
-                      onCheckedChange={(checked) => {
-                        if (checked) {
-                          setSelectedFlavors([...selectedFlavors, flavor])
-                        } else {
-                          setSelectedFlavors(selectedFlavors.filter(f => f !== flavor))
-                        }
-                      }}
-                    >
-                      {flavor}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="bg-white border-2 border-gray-200 hover:border-[#3AF0F7] transition-colors">
-                    <span className="mr-2">💪</span>
-                    Strength
-                    <ChevronDown className="ml-2 w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56">
-                  {strengths.map(strength => (
-                    <DropdownMenuCheckboxItem
-                      key={strength}
-                      checked={selectedStrengths.includes(strength)}
-                      onCheckedChange={(checked) => {
-                        if (checked) {
-                          setSelectedStrengths([...selectedStrengths, strength])
-                        } else {
-                          setSelectedStrengths(selectedStrengths.filter(s => s !== strength))
-                        }
-                      }}
-                    >
-                      {strength}
-                    </DropdownMenuCheckboxItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+        <section className="py-6">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
+            <div
+              className="flex flex-col sm:flex-row justify-center items-center bg-[#E6FAFC] border-0 rounded-[20px] shadow-none px-2 py-4 sm:px-4 sm:py-6 w-full max-w-2xl"
+              style={{ minWidth: 0, minHeight: 80 }}
+            >
+              <div className="flex flex-col sm:flex-row w-full max-w-2xl gap-2 sm:gap-0">
+                <FilterDropDown
+                  title="Brands"
+                  _icon={<BrandIcon />}
+                  options={brands}
+                  selected={selectedBrands}
+                  onChange={setSelectedBrands}
+                />
+                <div className="hidden sm:flex items-center mx-2" style={{ height: 'auto' }}>
+                  <div className="border-l border-[#E0E0E0]" style={{ height: '56px', width: 0, margin: '0 auto' }} />
+                </div>
+                <FilterDropDown
+                  title="Flavors"
+                  _icon={<FlavorIcon />}
+                  options={flavors}
+                  selected={selectedFlavors}
+                  onChange={setSelectedFlavors}
+                />
+                <div className="hidden sm:flex items-center mx-2" style={{ height: 'auto' }}>
+                  <div className="border-l border-[#E0E0E0]" style={{ height: '56px', width: 0, margin: '0 auto' }} />
+                </div>
+                <FilterDropDown
+                  title="Strength"
+                  _icon={<StrengthIcon />}
+                  options={strengths}
+                  selected={selectedStrengths}
+                  onChange={setSelectedStrengths}
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Products Grid */}
-        <section className="py-8 md:py-12">
+        <section className="py-8 md:py-11">
           <div className="max-w-[1440px] mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-0 gap-y-5 justify-items-center">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-2 sm:gap-x-0 gap-y-5 justify-items-center">
               {currentProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -283,8 +228,7 @@ export default function CategoryPage() {
               </Pagination>
             </div>
           </div>
-        </section>
-      </main>   
+        </section> 
     </div>
   )
 }

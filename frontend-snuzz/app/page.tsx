@@ -77,12 +77,12 @@ export default function Component() {
       </div>
 
       {/*Product Card */}
-      <section id="products-section" className="px-5 py-20 pt-28 sm:pt-24 md:pt-20 bg-white relative z-10">
+      <section id="products-section" className="px-3 xs:px-4 sm:px-5 py-20 pt-28 sm:pt-24 md:pt-20 bg-white relative z-10">
         <div className="max-w-[1440px] mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-4xl font-bold text-gray-900">Best selling</h2>
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">Best selling</h2>
           </div>
-          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols- 2xl:grid-cols-5 gap-x-0 gap-y-5 mb-10 md:mb-12 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-4 mb-8 sm:mb-10 md:mb-12 justify-items-center">
             {allProducts.slice(0, visibleProducts).map((product) => (
               <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
             ))}

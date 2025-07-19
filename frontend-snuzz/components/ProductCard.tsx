@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { getDiscountPercentage } from "@/lib/utils";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: {
@@ -18,7 +19,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <div
-      className="relative bg-gradient-to-b from-[#CEF6F8] to-[#F0F1F1] rounded-lg sm:rounded-xl p-2 sm:p-3 flex flex-col justify-between  w-full h-full aspect-[3/4] sm:aspect-[3/4]"
+      className="group relative bg-gradient-to-b from-[#CEF6F8] to-[#F0F1F1] rounded-lg sm:rounded-xl p-2 sm:p-3 flex flex-col justify-between w-full h-full aspect-[3/4] sm:aspect-[3/4] cursor-pointer hover:shadow-md transition-shadow"
     >
       <div className="flex flex-col items-center w-full flex-1">
         <div className="flex flex-row justify-between items-center w-full z-10">
@@ -33,20 +34,20 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
             Free shipping
           </span>
         </div>
-        <div className="flex items-center justify-center w-full flex-1 min-h-0 mt-1">
+        <Link href={`/product/${product.id}`} className="flex items-center justify-center w-full flex-1 min-h-0 mt-1">
           <Image
             src="/mint.png"
             alt={product.name}
-            className="object-contain drop-shadow-xl [filter:drop-shadow(0_8px_16px_rgba(0,0,0,0.10)] w-auto h-auto max-h-[80%]"
+            className="object-contain drop-shadow-xl [filter:drop-shadow(0_8px_16px_rgba(0,0,0,0.10)] w-auto h-auto max-h-[80%] transition-transform group-hover:scale-105"
             width={180}
             height={132}
           />
-        </div>
+        </Link>
       </div>
 
       <div className="flex w-full items-end justify-between mt-1 min-h-0">
-        <div className="text-left flex-1 min-w-0">
-          <h3 className="font-normal text-[12px] sm:text-[13px] md:text-[14px] text-black leading-tight truncate">
+        <Link href={`/product/${product.id}`} className="text-left flex-1 min-w-0">
+          <h3 className="font-normal text-[12px] sm:text-[13px] md:text-[14px] text-black leading-tight truncate group-hover:text-teal-700 transition-colors">
             {product.name}
           </h3>
           <div className="flex items-center gap-1 flex-wrap mt-0.5">
@@ -59,7 +60,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
               </span>
             )}
           </div>
-        </div>
+        </Link>
         <button
           onClick={() => onAddToCart(product)}
           className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center bg-[#CEF6F8]/80 shadow flex-shrink-0 [box-shadow:0_2px_8px_0_rgba(58,240,247,0.10)]"

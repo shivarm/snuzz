@@ -141,7 +141,7 @@ export default function Header({
 
            <nav className="flex items-center space-x-8">
             {[
-              { label: "Shop", href: "/categories" },
+              { label: "Shop", href: "/product" },
               { label: "Brands", href: "#" },
               { label: "Flavor", href: "#" },
               { label: "Strength", href: "#" },
@@ -277,7 +277,7 @@ export default function Header({
         <div className="md:hidden w-full bg-white border-b border-gray-200">
           <div className="px-4 py-6 space-y-4">
             {[
-              { label: "Shop", href: "/categories" },
+              { label: "Shop", href: "/product" },
               { label: "Brands", href: "#" },
               { label: "Flavor", href: "#" },
               { label: "SnuzzPro", href: "/pro" },

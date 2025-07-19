@@ -99,10 +99,10 @@ export default function Hero() {
                 strength for best price on market with free shipping.
               </p>
               {/* CTA Button */}
-              <Link href="/categories">
-                <Button className="bg-[#3AF0F7] hover:bg-[#2de0e7] text-black font-medium px-5 py-5 rounded-2xl text-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 group">
+              <Link href="/product">
+                <Button className="text-xl bg-[#3AF0F7] hover:bg-[#2de0e7] text-black font-medium w-[164.02px] h-[47.19px] rounded-[10.16px] pt-[9.34px] pr-[13.76px] pb-[9.18px] pl-[25.07px] flex items-center gap-[11.31px]">
                   Buy now
-                  <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>
               {/* Stats with vertical dividers - now with animation */}

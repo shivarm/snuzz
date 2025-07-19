@@ -7,7 +7,9 @@ import ProductCard from "@/components/ProductCard";
 import Hero from "@/components/Hero";
 import CartSidebar from "@/components/cart-sidebar";
 import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { allProducts } from "@/lib/utils";
+import Link from "next/link";
 
 // Product data with 50+ items
 
@@ -21,7 +23,7 @@ interface CartItem {
 }
 
 export default function Component() {
-  const [visibleProducts, setVisibleProducts] = useState(16);
+  const [visibleProducts, setVisibleProducts] = useState(10);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
@@ -85,6 +87,19 @@ export default function Component() {
               <ProductCard key={product.id} product={product} onAddToCart={addToCart} />
             ))}
           </div>
+          
+          {allProducts.length > visibleProducts && (
+            <div className="text-center mt-8">
+              <Link href="/product">
+                <Button
+                  className="px-6 py-5 border border-teal-400 rounded-md text-black font-medium bg-transparent text-lg"
+                >
+                  Show all
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 

@@ -18,7 +18,7 @@ interface ProductCardProps {
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <div
-      className="relative bg-gradient-to-b from-[#CEF6F8] to-[#F0F1F1] rounded-sm p-3 flex flex-col justify-between border border-dotted w-full max-w-[248px] min-w-[248px] h-[329px] min-h-[329px] rotate-0 opacity-100"
+      className="relative bg-gradient-to-b from-[#CEF6F8] to-[#F0F1F1] rounded-xl p-3 flex flex-col justify-between border border-dotted w-full max-w-[248px] min-w-[248px] h-[329px] min-h-[329px] rotate-0 opacity-100"
     >
       <div className="flex flex-col items-center w-full flex-1">
         <div className="flex flex-row justify-between items-center w-full z-10">
@@ -62,7 +62,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
         </div>
         <button
           onClick={() => onAddToCart(product)}
-          className="w-8 h-8 rounded-full flex items-center justify-center bg-[#e0f7fa]/80 shadow flex-shrink-0 [box-shadow:0_2px_8px_0_rgba(58,240,247,0.10)]"
+          className="w-8 h-8 rounded-full flex items-center justify-center bg-[#CEF6F8]/80 shadow flex-shrink-0 [box-shadow:0_2px_8px_0_rgba(58,240,247,0.10)]"
         >
           <Image
             src="/cart.png"

@@ -120,16 +120,12 @@ export default function CategoryPage() {
 
     
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-[#3AF0F7]/10 to-[#8ef7fb]/10 py-8">
-          <div className="max-w-7xl mx-auto px-4 md:px-6">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Best selling</h1>
-            <p className="text-gray-600 text-lg">Discover our most popular nicotine products</p>
-          </div>
+        <section className="flex justify-center py-8">
+          <h1 className="text-3xl md:text-4xl font-medium text-gray-900 mb-4">Best selling</h1>
         </section>
 
         {/* Filters */}
-        <section className="py-6">
-          <div className="max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
+        <section className="max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
             <div
               className="flex flex-col sm:flex-row justify-center items-center bg-[#E6FAFC] border-0 rounded-[20px] shadow-none px-2 py-4 sm:px-4 sm:py-6 w-full max-w-2xl"
               style={{ minWidth: 0, minHeight: 80 }}
@@ -164,7 +160,6 @@ export default function CategoryPage() {
                 />
               </div>
             </div>
-          </div>
         </section>
 
         {/* Products Grid */}
